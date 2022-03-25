@@ -1,26 +1,40 @@
+import React from "react";
 import { useState } from "react";
-import MyMainComponent from "./MyMainComponent";
-import "./App.css";
+import axios from "axios";
+import "./App.css"; 
+//https://jsonplaceholder.typicode.com/users//
 
-function App() {
-  const [value, setValue] = useState("");
-  const [keyValue, setKeyValue] = useState(false);
-  const [inputVal, setInputVal] = useState("");
-  return (
-    <div className="Sanaz">
-      <input onClick={(e) => setValue(e.target.value)} />
-      <p>{value}</p>
+export default function App(){
+const[counter, setCounter] = useState(0);
 
-      <div onClick={()=> setKeyValue(!keyValue)}>
-        click kon
-      </div>
-      {keyValue === true ? <MyMainComponent buttonTitle= {value} 
-      onInputChange={(inputVal)=> setInputVal(inputVal)}/> : undefined};
-      <button>{inputVal}</button>
-    
-      <p>{inputVal}</p> 
-    </div>
-  );
+
+const fetchData = ()=>{
+  axios.get("https://jsonplaceholder.typicode.com/users")
+  .then( response => {
+    // handle success
+    console.log(response);
+    return response;
+  })
+  .catch(error => {
+    // handle error
+    console.error(error);
+  })
 }
 
-export default App;
+
+  return(
+<div className="App">
+<h1>Here is our Counter</h1>
+<p>{counter}</p>
+<button onClick={() =>setCounter( counter + 10)}>
+  Increase Counter 
+</button>
+<button onClick={() =>{
+  fetchData();
+  console.log("foo");
+}}>
+  Fetch the API
+</button>
+</div>
+  )
+}
