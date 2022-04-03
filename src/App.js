@@ -5,7 +5,6 @@ import "./App.css";
 //https://jsonplaceholder.typicode.com/users//
 
 export default function App(){
-const[counter, setCounter] = useState(0);
 const[Users, setUsers] = useState("");
 
 /////////////////
@@ -34,13 +33,7 @@ const fetchData = async ()=>{
 
   return(
 <div className="App">
-<h1>Here is our Counter</h1>
-<p>{counter}</p>
-<button onClick={() =>setCounter( counter + 10)}>
-  Increase Counter 
-</button>
-
-
+<h1>Here is fetch Data😊😎</h1>
 <p>
   {Users}
 </p>
